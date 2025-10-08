@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd"
+             version="3.1">
+
+    <!-- Name of the persistence unit -->
+    <persistence-unit name="clinicaPU" transaction-type="RESOURCE_LOCAL">
+
+        <!-- JPA Provider (Hibernate) -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Entity classes -->
+        <class>com.clinica.model.User</class>
+        <class>com.clinica.model.Patient</class>
+        <class>com.clinica.model.Doctor</class>
+        <class>com.clinica.model.Department</class>
+        <class>com.clinica.model.Speciality</class>
+        <class>com.clinica.model.Availability</class>
+        <class>com.clinica.model.Appointment</class>
+        <class>com.clinica.model.MedicalNote</class>
+        <class>com.clinica.model.Staff</class>
+
+        <properties>
+            <!-- 🧩 Database Connection -->
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/clinica"/>
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
+            <property name="jakarta.persistence.jdbc.password" value="123123"/>
+
+            <!-- ⚙️ Hibernate Configuration -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+            <!-- 🧠 Optional: Connection Pool Settings -->
+            <property name="hibernate.connection.pool_size" value="10"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>
