@@ -5,6 +5,7 @@ import com.clinica.model.enums.AppointmentType;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -25,6 +26,9 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
+
+    @OneToMany(mappedBy = "appointment")
+    private List<MedicalNote> medicalNotes;
 
     private AppointmentType type;
     private String executor;

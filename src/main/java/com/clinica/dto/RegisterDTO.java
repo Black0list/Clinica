@@ -1,30 +1,31 @@
-package com.clinica.model;
+package com.clinica.dto;
 
 import com.clinica.model.enums.BloodType;
-import jakarta.persistence.*;
-
+import java.io.Serializable;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "patients")
-@PrimaryKeyJoinColumn(name = "user_id")
-public class Patient extends User {
+public class RegisterDTO implements Serializable {
+    private String name;
+    private String email;
+    private String password;
     private String cin;
     private LocalDate birthDate;
     private String sex;
+    private String phone;
     private String address;
-    @Enumerated(EnumType.STRING)
     private BloodType blood;
 
-    public Patient() {}
+    public RegisterDTO() {}
 
-    public Patient(String cin, LocalDate birthDate, String sex, String address, BloodType blood) {
-        this.cin = cin;
-        this.birthDate = birthDate;
-        this.sex = sex;
-        this.address = address;
-        this.blood = blood;
-    }
+    // Getters & Setters
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
 
     public String getCin() { return cin; }
     public void setCin(String cin) { this.cin = cin; }
@@ -34,6 +35,9 @@ public class Patient extends User {
 
     public String getSex() { return sex; }
     public void setSex(String sex) { this.sex = sex; }
+
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
 
     public String getAddress() { return address; }
     public void setAddress(String address) { this.address = address; }

@@ -12,6 +12,7 @@ public class User {
     private int id;
     private String name;
     private String email;
+    private String phone;
     private String password;
     @Column(name = "is_active")
     private boolean isActive;
@@ -42,6 +43,9 @@ public class User {
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
 
     public boolean isActive() { return isActive; }
     public void setActive(boolean active) { isActive = active; }

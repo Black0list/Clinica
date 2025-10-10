@@ -63,5 +63,4 @@ public class Speciality {
     public List<Doctor> getDoctors() { return doctors; }
     public void setDoctors(List<Doctor> doctors) { this.doctors = doctors; }
 
-
 }
