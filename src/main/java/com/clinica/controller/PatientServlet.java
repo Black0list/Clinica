@@ -1,23 +1,30 @@
 package com.clinica.controller;
 
+import com.clinica.dto.PatientDTO;
 import com.clinica.dto.RegisterDTO;
 import com.clinica.model.enums.BloodType;
+import com.clinica.service.PatientService;
 import com.clinica.service.UserService;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
-@WebServlet(name = "patientServlet", value = "/patients/*")
+@WebServlet(name = "patientServlet", value = {"/patients", "/patients/*"})
 public class PatientServlet extends HttpServlet {
 
     private final UserService userService = UserService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/dashboard.jsp").forward(request, response);
+        List<PatientDTO> patients = PatientService.patients();
+        request.setAttribute("bloodTypes", Arrays.asList(BloodType.values()));
+        request.setAttribute("patients", patients);
+        request.getRequestDispatcher("/WEB-INF/views/pages/patients.jsp").forward(request, response);
     }
 
     @Override

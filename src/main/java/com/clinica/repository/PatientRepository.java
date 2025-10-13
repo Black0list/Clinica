@@ -15,11 +15,9 @@ import java.util.Optional;
 
 public class PatientRepository implements PatientRepositoryIntf {
     private static PatientRepository instance;
-    private final PatientDAO patientDAO;
+    private static final PatientDAO patientDAO = PatientDAO.getInstance();;
 
-    private PatientRepository() {
-        this.patientDAO = PatientDAO.getInstance();
-    }
+    private PatientRepository() {}
 
     public static synchronized PatientRepository getInstance() {
         if (instance == null)

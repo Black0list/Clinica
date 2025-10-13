@@ -14,18 +14,14 @@ import java.util.List;
 @WebServlet(name = "DashboardServlet", value = "/dashboard")
 public class DashboardServlet extends HttpServlet {
 
-    private PatientService patientService;
-
-    public DashboardServlet(){
-        this.patientService = PatientService.getInstance();
-    }
+    private static final PatientService patientService = PatientService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<PatientDTO> patients = PatientService.patients();
         request.setAttribute("bloodTypes", Arrays.asList(BloodType.values()));
         request.setAttribute("patients", patients);
-        request.getRequestDispatcher("/WEB-INF/views/dashboard.jsp")
+        request.getRequestDispatcher("/WEB-INF/views/pages/dashboard.jsp")
                 .forward(request, response);
     }
 

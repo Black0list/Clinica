@@ -12,11 +12,9 @@ import java.util.Optional;
 
 public class UserRepository implements UserRepositoryIntf {
     private static UserRepository instance;
-    private final UserDAO userDao;
+    private static final UserDAO userDao = UserDAO.getInstance();;
 
-    private UserRepository() {
-        this.userDao = UserDAO.getInstance();
-    }
+    private UserRepository() {}
 
     public static synchronized UserRepository getInstance() {
         if (instance == null)

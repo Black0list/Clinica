@@ -14,9 +14,11 @@ public class PatientService {
     private static volatile PatientService instance;
     private static final PatientRepositoryIntf patientRepo = PatientRepository.getInstance();
 
+    private PatientService(){};
+
     public static PatientService getInstance() {
         if (instance == null) {
-            synchronized (UserService.class) {
+            synchronized (PatientService.class) {
                 if (instance == null) instance = new PatientService();
             }
         }

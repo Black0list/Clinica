@@ -38,12 +38,12 @@ public class AuthServlet extends HttpServlet {
 
         switch (path) {
             case "/register" -> {
-                request.getRequestDispatcher("/WEB-INF/views/register.jsp")
+                request.getRequestDispatcher("/WEB-INF/views/authentication/register.jsp")
                         .forward(request, response);
             }
 
             default ->
-                    request.getRequestDispatcher("/WEB-INF/views/login.jsp")
+                    request.getRequestDispatcher("/WEB-INF/views/authentication/login.jsp")
                             .forward(request, response);
         }
     }
@@ -77,13 +77,13 @@ public class AuthServlet extends HttpServlet {
 
         if(Objects.isNull(name) || Objects.isNull(email) || Objects.isNull(password) || Objects.isNull(confirm)){
             request.setAttribute("error", "Invalid Inputs");
-            request.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/authentication/register.jsp").forward(request, response);
             return;
         }
 
         if (!password.equals(confirm)) {
             request.setAttribute("error", "Passwords do not match!");
-            request.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/authentication/register.jsp").forward(request, response);
             return;
         }
 
@@ -100,14 +100,14 @@ public class AuthServlet extends HttpServlet {
 
         if(!userService.register(registerDTO)){
             request.setAttribute("error", "Email already Used");
-            request.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/authentication/register.jsp").forward(request, response);
             return;
 
         } else {
             request.setAttribute("success", "Successfully Registered");
         }
 
-        request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/authentication/login.jsp").forward(request, response);
     }
 
     private void handleLogin(HttpServletRequest request, HttpServletResponse response)
@@ -118,7 +118,7 @@ public class AuthServlet extends HttpServlet {
 
         if(Objects.isNull(email) || Objects.isNull(password)){
             request.setAttribute("error", "Invalid Input");
-            request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/authentication/login.jsp").forward(request, response);
             return;
         }
 
@@ -133,7 +133,7 @@ public class AuthServlet extends HttpServlet {
             session.setAttribute("user", userOpt.get());
         } else {
             request.setAttribute("error", "Invalid Credentials");
-            request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/authentication/login.jsp").forward(request, response);
             return;
         }
 
