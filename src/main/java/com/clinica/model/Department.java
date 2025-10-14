@@ -16,7 +16,7 @@ public class Department {
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
     private List<Speciality> specialties;
 
     public Department() {}

@@ -19,7 +19,7 @@
                 </div>
             </div>
 
-            <form id="specialityForm" method="post" action="specialities/create">
+            <form id="specialityForm" method="post" action="/specialities/create">
                 <input type="hidden" id="specialityId" name="id">
                 <input type="hidden" id="specialityFormMethod" name="_method" value="">
 
@@ -63,12 +63,12 @@
                             Department <span class="text-red-500">*</span>
                         </label>
                         <select id="departmentId"
-                                name="departmentId"
+                                name="depName"
                                 class="block w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                                 required>
                             <option value="">Select department</option>
                             <c:forEach var="dept" items="${departments}">
-                                <option value="${dept.id}">${dept.name}</option>
+                                <option value="${dept.name}">${dept.name}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -126,17 +126,18 @@
         const title = document.getElementById('specialityModalTitle');
         const button = document.getElementById('specialitySubmitButtonText');
 
-        fetch(`/specialities/${id}`)
+        fetch(`/specialities/`+id)
             .then(response => {
                 if (!response.ok) throw new Error(`Server returned ${response.status}`);
                 return response.json();
             })
             .then(data => {
+                console.log(data)
                 document.getElementById('specialityId').value = data.id;
                 document.getElementById('specialityCode').value = data.code;
                 document.getElementById('specialityName').value = data.name;
                 document.getElementById('specialityDescription').value = data.description || '';
-                document.getElementById('departmentId').value = data.departmentId;
+                document.getElementById('departmentId').value = data.department;
 
                 form.action = '/specialities/update';
                 document.getElementById('specialityFormMethod').value = 'PUT';

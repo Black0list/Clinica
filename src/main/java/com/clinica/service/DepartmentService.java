@@ -1,5 +1,7 @@
 package com.clinica.service;
 
+import com.clinica.dto.DepartmentDTO;
+import com.clinica.mapper.DepartmentMapper;
 import com.clinica.model.Department;
 import com.clinica.repository.DepartmentRepository;
 import com.clinica.repository.repositoryIntf.DepartmentRepositoryIntf;
@@ -26,8 +28,9 @@ public class DepartmentService {
         departmentRepository.create(department);
     }
 
-    public List<Department> getAllDepartments() {
-        return departmentRepository.getAll();
+    public List<DepartmentDTO> getAllDepartments() {
+        List<Department> departments =  departmentRepository.getAll();
+        return departments.stream().map(DepartmentMapper::toDTO).toList();
     }
 
     public void delete(Long id) {

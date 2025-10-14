@@ -1,5 +1,7 @@
 package com.clinica.controller;
 
+import com.clinica.dto.DepartmentDTO;
+import com.clinica.dto.SpecialityDTO;
 import com.clinica.model.Department;
 import com.clinica.model.Speciality;
 import com.clinica.service.DepartmentService;
@@ -15,27 +17,30 @@ import java.util.Optional;
 public class SpecialityServlet extends HttpServlet {
 
     private final SpecialityService specialityService = SpecialityService.getInstance();
+    private final DepartmentService departmentService = DepartmentService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String pathInfo = req.getPathInfo();
+        List<DepartmentDTO> departments = departmentService.getAllDepartments();
 
         if (pathInfo != null && pathInfo.length() > 1) {
             try {
                 Long id = Long.parseLong(pathInfo.substring(1));
-                Optional<Speciality> dept = specialityService.findById(id);
-                if (dept.isEmpty()) {
+                Optional<SpecialityDTO> spec = specialityService.findById(id);
+                if (spec.isEmpty()) {
                     resp.sendError(HttpServletResponse.SC_NOT_FOUND);
                     return;
                 }
                 resp.setContentType("application/json");
                 resp.setCharacterEncoding("UTF-8");
                 String json = String.format(
-                        "{ \"id\": %d, \"code\": \"%s\", \"name\": \"%s\", \"description\": \"%s\" }",
-                        dept.get().getId(),
-                        escapeJson(dept.get().getCode()),
-                        escapeJson(dept.get().getName()),
-                        dept.get().getDescription() != null ? escapeJson(dept.get().getDescription()) : ""
+                        "{ \"id\": %d, \"code\": \"%s\", \"name\": \"%s\", \"description\": \"%s\", \"department\": \"%s\" }",
+                        spec.get().getId(),
+                        escapeJson(spec.get().getCode()),
+                        escapeJson(spec.get().getName()),
+                        spec.get().getDescription() != null ? escapeJson(spec.get().getDescription()) : "",
+                        escapeJson(spec.get().getDepartmentName())
                 );
                 resp.getWriter().write(json);
             } catch (NumberFormatException e) {
@@ -43,6 +48,7 @@ public class SpecialityServlet extends HttpServlet {
             }
         } else {
             List<Speciality> specialities = specialityService.getAllSpecialities();
+            req.setAttribute("departments", departments);
             req.setAttribute("specialities", specialities);
             req.getRequestDispatcher("/WEB-INF/views/pages/specialities.jsp").forward(req, resp);
         }
@@ -61,13 +67,14 @@ public class SpecialityServlet extends HttpServlet {
     }
 
     private void handleUpdate(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        Speciality dept = new Speciality();
-        dept.setId(Long.parseLong(req.getParameter("id")));
-        dept.setCode(req.getParameter("code"));
-        dept.setDescription(req.getParameter("description"));
-        dept.setName(req.getParameter("name"));
+        SpecialityDTO spec = new SpecialityDTO();
+        spec.setId(Long.parseLong(req.getParameter("id")));
+        spec.setCode(req.getParameter("code"));
+        spec.setDescription(req.getParameter("description"));
+        spec.setName(req.getParameter("name"));
+        spec.setDepartmentName(req.getParameter("depName"));
 
-        specialityService.updateSpeciality(dept);
+        specialityService.updateSpeciality(spec);
         resp.sendRedirect(req.getContextPath() + "/specialities");
     }
 
@@ -78,16 +85,13 @@ public class SpecialityServlet extends HttpServlet {
     }
 
     private void handleCreation(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String code = req.getParameter("code");
-        String name = req.getParameter("name");
-        String description = req.getParameter("description");
+        SpecialityDTO spec = new SpecialityDTO();
+        spec.setCode(req.getParameter("code"));
+        spec.setDescription(req.getParameter("description"));
+        spec.setName(req.getParameter("name"));
+        spec.setDepartmentName(req.getParameter("depName"));
 
-        Speciality speciality = new Speciality();
-        speciality.setCode(code);
-        speciality.setName(name);
-        speciality.setDescription(description);
-
-        specialityService.createSpeciality(speciality);
+        specialityService.createSpeciality(spec);
         resp.sendRedirect(req.getContextPath() + "/specialities");
     }
 

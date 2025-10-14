@@ -21,7 +21,7 @@
                         <h1 class="text-3xl font-bold mb-2">Specialities Management</h1>
                         <p class="text-gray-600 dark:text-gray-400">Manage all medical specialities and their associated departments</p>
                     </div>
-                    <button onclick="openModal('specialityModal')" class="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors">
+                    <button onclick="openSpecialityModal('specialityModal')" class="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors">
                         <i class="fas fa-plus"></i>
                         Add Speciality
                     </button>
@@ -47,7 +47,6 @@
                             <th class="px-6 py-3">Name</th>
                             <th class="px-6 py-3">Description</th>
                             <th class="px-6 py-3">Department</th>
-                            <th class="px-6 py-3">Doctors</th>
                             <th class="px-6 py-3">Actions</th>
                         </tr>
                         </thead>
@@ -66,12 +65,6 @@
                                         <td class="px-6 py-4">${spec.name}</td>
                                         <td class="px-6 py-4 text-gray-600 dark:text-gray-400 max-w-md truncate" title="${spec.description}">${spec.description}</td>
                                         <td class="px-6 py-4">${spec.department.name}</td>
-                                        <td class="px-6 py-4">
-                                            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-400 font-semibold text-xs">
-                                                <i class="fas fa-user-md"></i>
-                                                ${fn:length(spec.doctors)} Doctor(s)
-                                            </span>
-                                        </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items-center gap-2">
                                                 <button onclick="editSpeciality(${spec.id})" class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition-colors" title="Edit Speciality">
@@ -99,7 +92,7 @@
                                             </div>
                                             <p class="text-gray-500 dark:text-gray-400 font-medium">No specialities found</p>
                                             <p class="text-sm text-gray-400 dark:text-gray-500">Create your first speciality to get started</p>
-                                            <button onclick="openModal('specialityModal')" class="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors">
+                                            <button onclick="openSpecialityModal('specialityModal')" class="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors">
                                                 <i class="fas fa-plus"></i>
                                                 Add Speciality
                                             </button>

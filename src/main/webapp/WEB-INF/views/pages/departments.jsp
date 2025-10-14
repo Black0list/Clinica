@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <jsp:include page="../components/includes/layout-head.jsp">
@@ -46,6 +45,7 @@
                             <th class="px-6 py-3">Code</th>
                             <th class="px-6 py-3">Department Name</th>
                             <th class="px-6 py-3">Description</th>
+                            <th class="px-6 py-3">Specialities</th>
                             <th class="px-6 py-3">Actions</th>
                         </tr>
                         </thead>
@@ -73,6 +73,17 @@
                                             <p class="text-gray-600 dark:text-gray-400 max-w-md truncate" title="${dept.description}">
                                                     ${dept.description}
                                             </p>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-100 dark:bg-cyan-900/30">
+                                                <i class="fas fa-stethoscope text-cyan-700 dark:text-cyan-400 text-xs"></i>
+                                                <span class="text-cyan-700 dark:text-cyan-400 font-semibold text-sm">
+                                                        ${dept.specialityCount}
+                                                </span>
+                                                <span class="text-cyan-600 dark:text-cyan-500 text-xs">
+                                                        ${dept.specialityCount == 1 ? 'Speciality' : 'Specialities'}
+                                                </span>
+                                            </div>
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items-center gap-2">
@@ -120,6 +131,17 @@
                             <p class="text-sm text-gray-600 dark:text-gray-400">
                                 Showing <span class="font-semibold text-gray-900 dark:text-white">${departments.size()}</span> department(s)
                             </p>
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm text-gray-600 dark:text-gray-400">Total Specialities:</span>
+                                <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 font-semibold text-sm">
+                                    <i class="fas fa-stethoscope text-xs"></i>
+                                    <c:set var="totalSpecialities" value="0" />
+                                    <c:forEach var="dept" items="${departments}">
+                                        <c:set var="totalSpecialities" value="${totalSpecialities + dept.specialityCount}" />
+                                    </c:forEach>
+                                    ${totalSpecialities}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </c:if>

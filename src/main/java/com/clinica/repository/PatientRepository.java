@@ -28,8 +28,7 @@ public class PatientRepository implements PatientRepositoryIntf {
     public Optional<User> findByEmail(String email) {
         EntityManager em = JpaUtil.getEntityManager();
         try {
-            TypedQuery<User> query = em.createQuery(
-                    "SELECT u FROM User u WHERE u.email = :email", User.class);
+            TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class);
             query.setParameter("email", email);
             return Optional.of(query.getSingleResult());
         } catch (NoResultException e) {

@@ -1,5 +1,6 @@
 package com.clinica.controller;
 
+import com.clinica.dto.DepartmentDTO;
 import com.clinica.model.Department;
 import com.clinica.service.DepartmentService;
 import jakarta.servlet.ServletException;
@@ -43,7 +44,7 @@ public class DepartmentServlet extends HttpServlet {
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid department ID");
             }
         } else {
-            List<Department> departments = departmentService.getAllDepartments();
+            List<DepartmentDTO> departments = departmentService.getAllDepartments();
             req.setAttribute("departments", departments);
             req.getRequestDispatcher("/WEB-INF/views/pages/departments.jsp").forward(req, resp);
         }

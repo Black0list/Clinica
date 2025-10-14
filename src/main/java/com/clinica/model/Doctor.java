@@ -17,10 +17,6 @@ public class Doctor extends User {
     @JoinColumn(name = "speciality_id")
     private Speciality speciality;
 
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
-
     @OneToMany(mappedBy = "doctor")
     private List<Availability> availabilities;
 
@@ -29,11 +25,10 @@ public class Doctor extends User {
 
     public Doctor() {}
 
-    public Doctor(String registration, String title, Speciality speciality, Department department, List<Availability> availabilities, List<Appointment> appointments) {
+    public Doctor(String registration, String title, Speciality speciality, List<Availability> availabilities, List<Appointment> appointments) {
         this.registration = registration;
         this.title = title;
         this.speciality = speciality;
-        this.department = department;
         this.availabilities = availabilities;
         this.appointments = appointments;
     }
@@ -46,9 +41,6 @@ public class Doctor extends User {
 
     public Speciality getSpeciality() { return speciality; }
     public void setSpeciality(Speciality speciality) { this.speciality = speciality; }
-
-    public Department getDepartment() { return department; }
-    public void setDepartment(Department department) { this.department = department; }
 
     public List<Availability> getAvailabilities() { return availabilities; }
     public void setAvailabilities(List<Availability> availabilities) { this.availabilities = availabilities; }

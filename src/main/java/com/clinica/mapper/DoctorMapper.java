@@ -14,7 +14,6 @@ public class DoctorMapper {
         doctor.setRegistration(dto.getRegistration());
         doctor.setTitle(dto.getTitle());
         doctor.setSpeciality(speciality);
-        doctor.setDepartment(department);
         doctor.setActive(true);
         doctor.setAdmin(true);
         return doctor;
@@ -29,7 +28,7 @@ public class DoctorMapper {
         dto.setRegistration(doctor.getRegistration());
         dto.setTitle(doctor.getTitle());
         dto.setDepartmentName(
-                doctor.getDepartment() != null ? doctor.getDepartment().getName() : null
+                doctor.getSpeciality().getDepartment() != null ? doctor.getSpeciality().getDepartment().getName() : null
         );
         dto.setSpecialityName(
                 doctor.getSpeciality() != null ? doctor.getSpeciality().getName() : null
