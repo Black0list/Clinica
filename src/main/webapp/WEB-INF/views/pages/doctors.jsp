@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left">
+                    <table class="w-full text-sm text-left min-w-max">
                         <thead class="text-xs uppercase bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
                         <tr>
                             <th class="px-6 py-3">ID</th>
@@ -95,13 +95,13 @@
                                         <td class="px-6 py-4">
                                                 <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 text-xs font-medium">
                                                     <i class="fas fa-stethoscope text-xs"></i>
-                                                    ${doctor.speciality}
+                                                    ${doctor.specialityName}
                                                 </span>
                                         </td>
                                         <td class="px-6 py-4">
                                                 <span class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs font-medium">
                                                     <i class="fas fa-hospital text-xs"></i>
-                                                    ${doctor.department}
+                                                    ${doctor.departmentName}
                                                 </span>
                                         </td>
                                         <td class="px-6 py-4">
@@ -112,10 +112,6 @@
                                         </td>
                                         <td class="px-6 py-4">
                                             <div class="flex items-center gap-2">
-                                                <button onclick="viewDoctor(${doctor.id})" class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 hover:bg-green-50 dark:hover:bg-green-900/30 rounded-lg transition-colors" title="View Profile">
-                                                    <i class="fas fa-eye"></i>
-                                                    View
-                                                </button>
                                                 <button onclick="editDoctor(${doctor.id})" class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition-colors" title="Edit Doctor">
                                                     <i class="fas fa-edit"></i>
                                                     Edit
@@ -182,6 +178,42 @@
 
 <jsp:include page="../components/modals/doctor-modal.jsp" />
 <jsp:include page="../components/includes/layout-footer.jsp" />
+
+<style>
+    .overflow-x-auto {
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .dark .overflow-x-auto::-webkit-scrollbar-track {
+        background: #374151;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+    }
+
+    .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    .dark .overflow-x-auto::-webkit-scrollbar-thumb {
+        background: #4b5563;
+    }
+
+    .dark .overflow-x-auto::-webkit-scrollbar-thumb:hover {
+        background: #6b7280;
+    }
+</style>
 
 <script>
     // Search functionality

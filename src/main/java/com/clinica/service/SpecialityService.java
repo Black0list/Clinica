@@ -36,8 +36,8 @@ public class SpecialityService {
         specialityRepository.create(speciality);
     }
 
-    public List<Speciality> getAllSpecialities() {
-        return specialityRepository.getAll();
+    public List<SpecialityDTO> getAllSpecialities() {
+        return specialityRepository.getAll().stream().map(SpecialityMapper::toDTO).toList();
     }
 
     public void delete(Long id) {
@@ -55,5 +55,9 @@ public class SpecialityService {
         }
         Speciality speciality = SpecialityMapper.fromCreateDTO(specialityDTO, department.get());
         specialityRepository.update(speciality);
+    }
+
+    public Optional<Speciality> findByName(String specialityName) {
+        return specialityRepository.findByName(specialityName);
     }
 }

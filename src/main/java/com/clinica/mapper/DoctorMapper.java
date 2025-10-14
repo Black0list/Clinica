@@ -6,16 +6,18 @@ import com.clinica.model.Doctor;
 import com.clinica.model.Speciality;
 
 public class DoctorMapper {
-    public static Doctor fromCreateDTO(DoctorDTO dto, Department department, Speciality speciality) {
+    public static Doctor fromCreateDTO(DoctorDTO dto, Speciality speciality) {
         Doctor doctor = new Doctor();
+        doctor.setId(dto.getId());
         doctor.setName(dto.getName());
         doctor.setEmail(dto.getEmail());
+        doctor.setPassword(dto.getPassword());
         doctor.setPhone(dto.getPhone());
         doctor.setRegistration(dto.getRegistration());
         doctor.setTitle(dto.getTitle());
         doctor.setSpeciality(speciality);
-        doctor.setActive(true);
-        doctor.setAdmin(true);
+        doctor.setActive(dto.isActive());
+        doctor.setAdmin(false);
         return doctor;
     }
 
@@ -27,11 +29,12 @@ public class DoctorMapper {
         dto.setPhone(doctor.getPhone());
         dto.setRegistration(doctor.getRegistration());
         dto.setTitle(doctor.getTitle());
+        dto.setActive(doctor.isActive());
         dto.setDepartmentName(
-                doctor.getSpeciality().getDepartment() != null ? doctor.getSpeciality().getDepartment().getName() : null
+                doctor.getSpeciality().getDepartment() != null ? doctor.getSpeciality().getDepartment().getName() : "Not Found"
         );
         dto.setSpecialityName(
-                doctor.getSpeciality() != null ? doctor.getSpeciality().getName() : null
+                doctor.getSpeciality() != null ? doctor.getSpeciality().getName() : "Not Found"
         );
         return dto;
     }

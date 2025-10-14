@@ -134,33 +134,12 @@
                                     <i class="fas fa-stethoscope text-gray-400"></i>
                                 </div>
                                 <select id="doctorSpeciality"
-                                        name="specialityId"
+                                        name="specialityName"
                                         class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500"
                                         required>
                                     <option value="">Select speciality</option>
                                     <c:forEach var="spec" items="${specialities}">
-                                        <option value="${spec.id}">${spec.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Department Field -->
-                        <div>
-                            <label for="doctorDepartment" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                Department <span class="text-red-500">*</span>
-                            </label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i class="fas fa-hospital text-gray-400"></i>
-                                </div>
-                                <select id="doctorDepartment"
-                                        name="departmentId"
-                                        class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                                        required>
-                                    <option value="">Select department</option>
-                                    <c:forEach var="dept" items="${departments}">
-                                        <option value="${dept.id}">${dept.name}</option>
+                                        <option value="${spec.name}">${spec.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -278,9 +257,10 @@
         const passwordHint = document.getElementById('passwordHint');
 
         // Fetch doctor data
-        fetch(`doctors/${id}`)
+        fetch(`/doctors/`+id)
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 // Populate form fields
                 document.getElementById('doctorId').value = data.id;
                 document.getElementById('doctorName').value = data.name;
@@ -288,12 +268,11 @@
                 document.getElementById('doctorPhone').value = data.phone || '';
                 document.getElementById('doctorRegistration').value = data.registration;
                 document.getElementById('doctorTitle').value = data.title || '';
-                document.getElementById('doctorSpeciality').value = data.specialityId;
-                document.getElementById('doctorDepartment').value = data.departmentId;
+                document.getElementById('doctorSpeciality').value = data.specialityName;
                 document.getElementById('doctorActive').checked = data.active;
 
                 // Set form action for update
-                form.action = 'doctors/update';
+                form.action = '/doctors/update';
                 document.getElementById('doctorFormMethod').value = 'PUT';
 
                 // Update modal title and button
@@ -330,8 +309,8 @@
     // Delete doctor
     function deleteDoctor(id) {
         if (confirm('Are you sure you want to delete this doctor? This action cannot be undone.')) {
-            fetch(`doctors/delete/${id}`, {
-                method: 'POST'
+            fetch(`/doctors/delete/`+id, {
+                method: 'GET'
             })
                 .then(response => {
                     if (response.ok) {

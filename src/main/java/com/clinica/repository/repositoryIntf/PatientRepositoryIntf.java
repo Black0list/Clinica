@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface PatientRepositoryIntf {
     void create(Patient patient);
-    Optional<User> findByEmail(String email);
+    Optional<Patient> findByEmail(String email);
     List<Patient> findAll();
 }

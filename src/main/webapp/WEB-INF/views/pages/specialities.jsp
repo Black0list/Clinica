@@ -64,7 +64,7 @@
                                         </td>
                                         <td class="px-6 py-4">${spec.name}</td>
                                         <td class="px-6 py-4 text-gray-600 dark:text-gray-400 max-w-md truncate" title="${spec.description}">${spec.description}</td>
-                                        <td class="px-6 py-4">${spec.department.name}</td>
+                                        <td class="px-6 py-4">${spec.departmentName}</td>
                                         <td class="px-6 py-4">
                                             <div class="flex items-center gap-2">
                                                 <button onclick="editSpeciality(${spec.id})" class="inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition-colors" title="Edit Speciality">

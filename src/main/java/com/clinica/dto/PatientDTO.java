@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class PatientDTO implements Serializable {
-    private int id;
+    private Long id;
     private String name;
     private String email;
     private String cin;
@@ -19,8 +19,8 @@ public class PatientDTO implements Serializable {
     public PatientDTO() {}
 
     // Getters & Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

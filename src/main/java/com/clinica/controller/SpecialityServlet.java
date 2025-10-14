@@ -47,7 +47,7 @@ public class SpecialityServlet extends HttpServlet {
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Speciality ID");
             }
         } else {
-            List<Speciality> specialities = specialityService.getAllSpecialities();
+            List<SpecialityDTO> specialities = specialityService.getAllSpecialities();
             req.setAttribute("departments", departments);
             req.setAttribute("specialities", specialities);
             req.getRequestDispatcher("/WEB-INF/views/pages/specialities.jsp").forward(req, resp);

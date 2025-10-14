@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {}) // protect these routes
+@WebFilter(urlPatterns = {})
 public class AuthFilter implements Filter {
 
     @Override

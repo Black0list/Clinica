@@ -17,18 +17,20 @@ public abstract class BaseDAO<T> {
     }
 
     //CREATE
-    public void create(T entity) {
+    public boolean create(T entity) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(entity);
             em.getTransaction().commit();
+            return true;
         } catch (Exception e) {
             em.getTransaction().rollback();
             System.out.println("Error creating entity: " + e.getMessage());
         } finally {
             em.close();
         }
+        return false;
     }
 
     //READ (findById)
@@ -54,22 +56,24 @@ public abstract class BaseDAO<T> {
     }
 
     //UPDATE
-    public void update(T entity) {
+    public boolean update(T entity) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.merge(entity);
             em.getTransaction().commit();
+            return true;
         } catch (Exception e) {
             em.getTransaction().rollback();
             System.out.println("Error updating entity: " + e.getMessage());
         } finally {
             em.close();
         }
+        return false;
     }
 
     //DELETE
-    public void delete(Object id) {
+    public boolean delete(Object id) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -78,11 +82,13 @@ public abstract class BaseDAO<T> {
                 em.remove(entity);
             }
             em.getTransaction().commit();
+            return true;
         } catch (Exception e) {
             em.getTransaction().rollback();
             System.out.println("Error deleting entity: " + e.getMessage());
         } finally {
             em.close();
         }
+        return false;
     }
 }

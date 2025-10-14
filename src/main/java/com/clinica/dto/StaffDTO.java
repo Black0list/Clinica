@@ -3,7 +3,7 @@ package com.clinica.dto;
 import java.io.Serializable;
 
 public class StaffDTO implements Serializable {
-    private int id;
+    private Long id;
     private String name;
     private String email;
     private String phone;
@@ -12,8 +12,8 @@ public class StaffDTO implements Serializable {
     public StaffDTO() {}
 
     // Getters & Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
