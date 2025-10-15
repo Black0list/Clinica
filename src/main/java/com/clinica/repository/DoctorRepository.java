@@ -67,4 +67,19 @@ public class DoctorRepository implements DoctorRepositoryIntf {
     public boolean update(Doctor doctor){
         return doctorDAO.update(doctor);
     }
+
+    public Optional<Doctor> findByName(String name) {
+        EntityManager em = JpaUtil.getEntityManager();
+        try {
+            Doctor doctor = em.createQuery(
+                            "SELECT d FROM Doctor d WHERE d.name = :name", Doctor.class)
+                    .setParameter("name", name)
+                    .getSingleResult();
+            return Optional.ofNullable(doctor);
+        } catch (NoResultException e) {
+            return Optional.empty();
+        } finally {
+            em.close();
+        }
+    }
 }

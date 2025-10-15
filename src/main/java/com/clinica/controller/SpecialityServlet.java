@@ -21,6 +21,7 @@ public class SpecialityServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("active", "specialities");
         String pathInfo = req.getPathInfo();
         List<DepartmentDTO> departments = departmentService.getAllDepartments();
 

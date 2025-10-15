@@ -14,6 +14,7 @@ import com.clinica.repository.repositoryIntf.DoctorRepositoryIntf;
 import com.clinica.repository.repositoryIntf.PatientRepositoryIntf;
 import com.clinica.repository.repositoryIntf.UserRepositoryIntf;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -63,7 +64,7 @@ public class UserService {
         return docRepo.create(doctor);
     }
 
-    public Object getAllDoctors() {
+    public List<DoctorDTO> getAllDoctors() {
         return docRepo.findAll().stream().map(DoctorMapper::toDTO).toList();
     }
 
@@ -93,5 +94,9 @@ public class UserService {
         Doctor doctor = DoctorMapper.fromCreateDTO(doctorDTO, speciality.get());
 
         return docRepo.update(doctor);
+    }
+
+    public Optional<Doctor> findDoctorByName(String doctorName) {
+        return docRepo.findByName(doctorName);
     }
 }

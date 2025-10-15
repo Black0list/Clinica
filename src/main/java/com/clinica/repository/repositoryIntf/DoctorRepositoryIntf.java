@@ -14,4 +14,5 @@ public interface DoctorRepositoryIntf {
     Optional<Doctor> findById(Long id);
     boolean delete(Long id);
     boolean update(Doctor doctor);
+    Optional<Doctor> findByName(String doctorName);
 }

@@ -1,6 +1,7 @@
 package com.clinica.model;
 
 import com.clinica.model.enums.AvailabilityStatus;
+import com.clinica.model.enums.DayOfWeek;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -14,7 +15,9 @@ public class Availability {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate day;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "day", nullable = false, length = 20)
+    private DayOfWeek day;
     private LocalTime startTime;
     private LocalTime endTime;
     private AvailabilityStatus status;
@@ -25,7 +28,7 @@ public class Availability {
 
     public Availability() {}
 
-    public Availability(Long id, LocalDate day, LocalTime startTime, LocalTime endTime, AvailabilityStatus status, Doctor doctor) {
+    public Availability(Long id, DayOfWeek day, LocalTime startTime, LocalTime endTime, AvailabilityStatus status, Doctor doctor) {
         this.id = id;
         this.day = day;
         this.startTime = startTime;
@@ -37,8 +40,8 @@ public class Availability {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public LocalDate getDay() { return day; }
-    public void setDay(LocalDate day) { this.day = day; }
+    public DayOfWeek getDay() { return day; }
+    public void setDay(DayOfWeek day) { this.day = day; }
 
     public LocalTime getStartTime() { return startTime; }
     public void setStartTime(LocalTime startTime) { this.startTime = startTime; }

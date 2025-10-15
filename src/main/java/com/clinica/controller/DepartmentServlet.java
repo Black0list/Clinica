@@ -17,6 +17,7 @@ public class DepartmentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("active", "departments");
         String pathInfo = req.getPathInfo();
 
         System.out.println("📡 doGet called!");

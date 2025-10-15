@@ -3,10 +3,10 @@
 <%
     request.setAttribute("pageTitle", "Medical Notes - Clinica Admin");
 %>
-<jsp:include page="./../components/includes/layout-head.jsp" />
+<jsp:include page="../../components/includes/layout-head.jsp" />
 
-<jsp:include page="./../components/includes/header.jsp" />
-<jsp:include page="./../components/includes/sidebar.jsp" />
+<jsp:include page="../../components/includes/header.jsp" />
+<jsp:include page="../../components/includes/sidebar.jsp" />
 
 <main class="main-content" id="mainContent">
     <section class="content-section active">
@@ -64,5 +64,5 @@
     </section>
 </main>
 
-<jsp:include page="./../components/modals/note-modal.jsp" />
-<jsp:include page="./../components/includes/layout-footer.jsp" />
+<jsp:include page="../../components/modals/note-modal.jsp" />
+<jsp:include page="../../components/includes/layout-footer.jsp" />

@@ -21,6 +21,7 @@ public class DoctorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.setAttribute("active", "doctors");
         String pathInfo = req.getPathInfo();
 
         if (pathInfo != null && pathInfo.matches("^/delete/\\d+$")) {

@@ -3,6 +3,8 @@ package com.clinica.controller;
 import com.clinica.dto.LoginDTO;
 import com.clinica.dto.RegisterDTO;
 import com.clinica.dto.UserDTO;
+import com.clinica.model.Doctor;
+import com.clinica.model.Staff;
 import com.clinica.model.User;
 import com.clinica.model.enums.BloodType;
 import com.clinica.service.UserService;
@@ -21,7 +23,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
-@WebServlet(name = "AuthServlet", value = "/auth/*")
+@WebServlet(name = "AuthServlet", value = {"/auth/*", "/login"})
 public class AuthServlet extends HttpServlet {
 
     private UserService userService;
@@ -116,7 +118,7 @@ public class AuthServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        if(Objects.isNull(email) || Objects.isNull(password)){
+        if (Objects.isNull(email) || Objects.isNull(password)) {
             request.setAttribute("error", "Invalid Input");
             request.getRequestDispatcher("/WEB-INF/views/authentication/login.jsp").forward(request, response);
             return;
@@ -125,19 +127,20 @@ public class AuthServlet extends HttpServlet {
         LoginDTO loginDTO = new LoginDTO();
         loginDTO.setEmail(email);
         loginDTO.setPassword(password);
-        Optional<UserDTO> userOpt =  userService.login(loginDTO);
+        Optional<UserDTO> userOpt = userService.login(loginDTO);
 
-        if(userOpt.isPresent()){
-            request.setAttribute("success", "Successfully Logged");
+        if (userOpt.isPresent()) {
+            UserDTO user = userOpt.get();
             HttpSession session = request.getSession();
-            session.setAttribute("user", userOpt.get());
+            session.setAttribute("user", user);
+            request.setAttribute("success", "Successfully Logged");
+
+            response.sendRedirect(request.getContextPath() + "/dashboard");
+
         } else {
             request.setAttribute("error", "Invalid Credentials");
             request.getRequestDispatcher("/WEB-INF/views/authentication/login.jsp").forward(request, response);
-            return;
         }
-
-        response.sendRedirect("/dashboard");
-//        request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request, response);
     }
+
 }

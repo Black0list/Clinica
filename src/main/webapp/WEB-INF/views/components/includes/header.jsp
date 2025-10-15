@@ -1,3 +1,4 @@
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
     <div class="flex items-center justify-between px-4 py-3">
@@ -39,9 +40,15 @@
             <div class="relative group">
                 <button class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
                     <div class="w-8 h-8 rounded-full bg-primary-600 flex items-center justify-center text-white font-semibold">
-                        A
+                        <c:if test="${not empty sessionScope.user}">
+                            ${fn:substring(sessionScope.user.name, 0, 1)}
+                        </c:if>
                     </div>
-                    <span class="hidden md:inline">Admin</span>
+                    <span class="hidden md:inline">
+                        <c:if test="${not empty sessionScope.user}">
+                            ${sessionScope.user.name}
+                        </c:if>
+                    </span>
                     <i class="fas fa-chevron-down text-sm"></i>
                 </button>
 
@@ -63,4 +70,18 @@
             </div>
         </div>
     </div>
+    <c:if test="${not empty sessionScope.success}">
+        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100 dark:bg-green-900 dark:text-green-200">
+                ${sessionScope.success}
+        </div>
+        <c:remove var="success" scope="session"/>
+    </c:if>
+
+    <c:if test="${not empty sessionScope.error}">
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 dark:bg-red-900 dark:text-red-200">
+                ${sessionScope.error}
+        </div>
+        <c:remove var="error" scope="session"/>
+    </c:if>
+
 </header>

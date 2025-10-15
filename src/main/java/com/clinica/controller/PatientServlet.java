@@ -21,6 +21,7 @@ public class PatientServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("active", "patients");
         List<PatientDTO> patients = PatientService.patients();
         request.setAttribute("bloodTypes", Arrays.asList(BloodType.values()));
         request.setAttribute("patients", patients);

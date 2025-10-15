@@ -9,7 +9,7 @@ public class UserDTO implements Serializable {
     private String phone;
     private boolean isActive;
     private boolean isAdmin;
-    private String type; // "Patient", "Doctor", "Staff"
+    private String type;
 
     public UserDTO() {}
 
