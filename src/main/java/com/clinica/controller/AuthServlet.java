@@ -23,7 +23,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
-@WebServlet(name = "AuthServlet", value = {"/auth/*", "/login"})
+@WebServlet(name = "AuthServlet", value = {"/auth/*", "/login",})
 public class AuthServlet extends HttpServlet {
 
     private UserService userService;
@@ -32,8 +32,10 @@ public class AuthServlet extends HttpServlet {
         this.userService = UserService.getInstance();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         request.setAttribute("bloodTypes", Arrays.asList(BloodType.values()));
         String path = request.getPathInfo();
         if (path == null) path = "/";
@@ -44,11 +46,22 @@ public class AuthServlet extends HttpServlet {
                         .forward(request, response);
             }
 
-            default ->
-                    request.getRequestDispatcher("/WEB-INF/views/authentication/login.jsp")
-                            .forward(request, response);
+            case "/logout" -> {
+                HttpSession session = request.getSession(false);
+                if (session != null) {
+                    session.invalidate();
+                }
+                // redirect to login page with success message
+                response.sendRedirect(request.getContextPath() + "/auth?success=Logged out successfully");
+            }
+
+            default -> {
+                request.getRequestDispatcher("/WEB-INF/views/authentication/login.jsp")
+                        .forward(request, response);
+            }
         }
     }
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

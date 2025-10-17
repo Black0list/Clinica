@@ -93,13 +93,8 @@ public class AvailabilityServlet extends HttpServlet {
         dto.setStatus(status);
 
         boolean created = availabilityService.create(dto);
-        if (created){
-            request.setAttribute("success", "Successfully Created the availability");
-        } else {
-            request.setAttribute("error", "Failed While Creating the Availability May You have already the chosen day");
-        }
 
-        response.sendRedirect("/availabilities");
+        response.sendRedirect("/doctor/availabilities?success="+created);
     }
 
     private void handleUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -10,4 +10,5 @@ public interface PatientRepositoryIntf {
     void create(Patient patient);
     Optional<Patient> findByEmail(String email);
     List<Patient> findAll();
+    Optional<Patient> findPatientByName(String patientName);
 }

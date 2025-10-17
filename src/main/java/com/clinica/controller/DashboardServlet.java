@@ -29,7 +29,7 @@ public class DashboardServlet extends HttpServlet {
         UserDTO user = (UserDTO) session.getAttribute("user");
 
         request.setAttribute("bloodTypes", Arrays.asList(BloodType.values()));
-        request.setAttribute("patients", PatientService.patients());
+        request.setAttribute("patients", patientService.patients());
         request.setAttribute("active", "dashboard");
         if (user.isAdmin()) {
             request.getRequestDispatcher("/WEB-INF/views/pages/dashboard.jsp").forward(request, response);
@@ -38,7 +38,7 @@ public class DashboardServlet extends HttpServlet {
         } else if ("staff".equalsIgnoreCase(user.getType())) {
             request.getRequestDispatcher("/WEB-INF/views/pages/staff/dashboard.jsp").forward(request, response);
         } else if ("patient".equalsIgnoreCase(user.getType())) {
-            request.getRequestDispatcher("/WEB-INF/views/pages/patient/appointments.jsp").forward(request, response);
+            response.sendRedirect("/patient/appointments/");
         } else {
             response.sendRedirect(request.getContextPath() + "/auth/login");
         }

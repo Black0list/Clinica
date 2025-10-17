@@ -5,6 +5,7 @@ import com.clinica.model.enums.AppointmentType;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 
@@ -15,9 +16,9 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDate startAt;
-    private LocalDate endAt;
-    private AppointmentStatus status;
+    private LocalDate date;
+    private LocalTime startAt;
+    private LocalTime endAt;
 
     @ManyToOne
     @JoinColumn(name = "doctor_id")
@@ -30,13 +31,15 @@ public class Appointment {
     @OneToMany(mappedBy = "appointment")
     private List<MedicalNote> medicalNotes;
 
+    @Enumerated(EnumType.STRING)
+    private AppointmentStatus status;
+    @Enumerated(EnumType.STRING)
     private AppointmentType type;
     private String executor;
 
     public Appointment() {}
 
-    public Appointment(Long id, LocalDate startAt, LocalDate endAt, AppointmentStatus status,
-                       Doctor doctor, Patient patient, AppointmentType type, String executor) {
+    public Appointment(Long id, LocalTime startAt, LocalTime endAt, AppointmentStatus status, Doctor doctor, Patient patient, AppointmentType type, String executor) {
         this.id = id;
         this.startAt = startAt;
         this.endAt = endAt;
@@ -50,11 +53,11 @@ public class Appointment {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public LocalDate getStartAt() { return startAt; }
-    public void setStartAt(LocalDate startAt) { this.startAt = startAt; }
+    public LocalTime getStartAt() { return startAt; }
+    public void setStartAt(LocalTime startAt) { this.startAt = startAt; }
 
-    public LocalDate getEndAt() { return endAt; }
-    public void setEndAt(LocalDate endAt) { this.endAt = endAt; }
+    public LocalTime getEndAt() { return endAt; }
+    public void setEndAt(LocalTime endAt) { this.endAt = endAt; }
 
     public AppointmentStatus getStatus() { return status; }
     public void setStatus(AppointmentStatus status) { this.status = status; }
@@ -70,4 +73,18 @@ public class Appointment {
 
     public String getExecutor() { return executor; }
     public void setExecutor(String executor) { this.executor = executor; }
+
+    public LocalDate getDate() {
+        return date;
+    }
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public List<MedicalNote> getMedicalNotes() {
+        return medicalNotes;
+    }
+    public void setMedicalNotes(List<MedicalNote> medicalNotes) {
+        this.medicalNotes = medicalNotes;
+    }
 }

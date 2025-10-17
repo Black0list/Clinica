@@ -62,7 +62,7 @@
                         <span>Settings</span>
                     </a>
                     <hr class="border-gray-200 dark:border-gray-700">
-                    <a href="#" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-b-lg text-red-600">
+                    <a href="/auth/logout" class="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-b-lg text-red-600">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Logout</span>
                     </a>
@@ -70,18 +70,5 @@
             </div>
         </div>
     </div>
-    <c:if test="${not empty sessionScope.success}">
-        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-100 dark:bg-green-900 dark:text-green-200">
-                ${sessionScope.success}
-        </div>
-        <c:remove var="success" scope="session"/>
-    </c:if>
-
-    <c:if test="${not empty sessionScope.error}">
-        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 dark:bg-red-900 dark:text-red-200">
-                ${sessionScope.error}
-        </div>
-        <c:remove var="error" scope="session"/>
-    </c:if>
 
 </header>

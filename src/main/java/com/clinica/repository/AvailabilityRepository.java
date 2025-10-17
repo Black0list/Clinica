@@ -4,6 +4,7 @@ import com.clinica.dao.AvailabilityDAO;
 import com.clinica.dto.AvailabilityDTO;
 import com.clinica.model.Availability;
 import com.clinica.model.Speciality;
+import com.clinica.model.enums.AvailabilityStatus;
 import com.clinica.model.enums.DayOfWeek;
 import com.clinica.repository.repositoryIntf.AvailabilityRepositoryIntf;
 import com.clinica.utils.JpaUtil;
@@ -57,4 +58,26 @@ public class AvailabilityRepository implements AvailabilityRepositoryIntf {
             em.close();
         }
     }
+
+    public boolean checkIfAvailable(String doctorName, String day) {
+        EntityManager em = JpaUtil.getEntityManager();
+        try {
+            TypedQuery<Availability> query = em.createQuery(
+                    "SELECT a FROM Availability a WHERE a.doctor.name = :doctorName AND a.status != :status AND a.day = :day",
+                    Availability.class
+            );
+            query.setParameter("doctorName", doctorName);
+            query.setParameter("day", DayOfWeek.valueOf(day));
+            query.setParameter("status", AvailabilityStatus.AVAILABLE);
+            query.setMaxResults(1);
+            Availability result = query.getSingleResult();
+            return result != null;
+        } catch (NoResultException e) {
+            return false;
+        } finally {
+            em.close();
+        }
+    }
+
+
 }

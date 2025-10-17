@@ -18,11 +18,12 @@ import java.util.Objects;
 public class PatientServlet extends HttpServlet {
 
     private final UserService userService = UserService.getInstance();
+    private final PatientService patientService = PatientService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("active", "patients");
-        List<PatientDTO> patients = PatientService.patients();
+        List<PatientDTO> patients = patientService.patients();
         request.setAttribute("bloodTypes", Arrays.asList(BloodType.values()));
         request.setAttribute("patients", patients);
         request.getRequestDispatcher("/WEB-INF/views/pages/patients.jsp").forward(request, response);

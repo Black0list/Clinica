@@ -453,7 +453,7 @@
             <div class="user-info">
                 <div class="user-avatar">DS</div>
                 <div class="user-details">
-                    <div class="user-name">Dr. Khadija Benessalih</div>
+                    <div class="user-name">Dr. Frank</div>
                     <div class="user-role">Cardiologist</div>
                 </div>
             </div>

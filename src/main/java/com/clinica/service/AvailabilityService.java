@@ -7,6 +7,8 @@ import com.clinica.model.Availability;
 import com.clinica.model.Doctor;
 import com.clinica.model.User;
 import com.clinica.repository.AvailabilityRepository;
+import com.clinica.utils.JpaUtil;
+import jakarta.persistence.EntityManager;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,5 +58,9 @@ public class AvailabilityService {
 
     public Optional<AvailabilityDTO> findById(Long id) {
         return Optional.of(AvailabilityMapper.toDTO(availabilityRepo.findById(id).get()));
+    }
+
+    public boolean checkDocIfAvailable(String doctorName, String day) {
+        return availabilityRepo.checkIfAvailable(doctorName, day);
     }
 }

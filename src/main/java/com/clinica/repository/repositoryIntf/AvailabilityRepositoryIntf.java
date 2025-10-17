@@ -13,4 +13,5 @@ public interface AvailabilityRepositoryIntf {
     boolean delete(Long id);
     List<Availability> getAll();
     Optional<Availability> findByName(DayOfWeek day);
+    boolean checkIfAvailable(String doctorName, String day);
 }

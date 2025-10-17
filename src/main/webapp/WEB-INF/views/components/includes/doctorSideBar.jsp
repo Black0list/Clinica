@@ -21,7 +21,7 @@
             <span>Availability</span>
         </a>
 
-        <a href="/doctor/appointments"
+        <a href="/doctors/appointments"
            class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 ${param.active == 'appointments' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300'}">
             <i class="fas fa-calendar-check w-5"></i>
             <span>Appointments</span>

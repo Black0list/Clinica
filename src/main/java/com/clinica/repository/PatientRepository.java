@@ -2,6 +2,7 @@ package com.clinica.repository;
 
 import com.clinica.dao.PatientDAO;
 import com.clinica.dao.UserDAO;
+import com.clinica.model.Doctor;
 import com.clinica.model.Patient;
 import com.clinica.model.User;
 import com.clinica.repository.repositoryIntf.PatientRepositoryIntf;
@@ -51,5 +52,20 @@ public class PatientRepository implements PatientRepositoryIntf {
 
     public void create(Patient patient){
         patientDAO.create(patient);
+    }
+
+    public Optional<Patient> findPatientByName(String patientName){
+        EntityManager em = JpaUtil.getEntityManager();
+        try {
+            Patient patient = em.createQuery(
+                            "SELECT p FROM Patient p WHERE p.name = :name", Patient.class)
+                    .setParameter("name", patientName)
+                    .getSingleResult();
+            return Optional.ofNullable(patient);
+        } catch (NoResultException e) {
+            return Optional.empty();
+        } finally {
+            em.close();
+        }
     }
 }

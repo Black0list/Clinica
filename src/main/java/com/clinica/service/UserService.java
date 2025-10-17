@@ -99,4 +99,8 @@ public class UserService {
     public Optional<Doctor> findDoctorByName(String doctorName) {
         return docRepo.findByName(doctorName);
     }
+
+    public List<String> getAllDoctorsBySpeciality(String specialty) {
+        return docRepo.findAllBySpeciality(specialty);
+    }
 }

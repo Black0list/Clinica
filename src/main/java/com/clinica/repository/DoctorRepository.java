@@ -3,6 +3,7 @@ package com.clinica.repository;
 import com.clinica.dao.DoctorDAO;
 import com.clinica.dao.PatientDAO;
 import com.clinica.dao.UserDAO;
+import com.clinica.dto.DoctorDTO;
 import com.clinica.model.Doctor;
 import com.clinica.model.Patient;
 import com.clinica.model.User;
@@ -82,4 +83,22 @@ public class DoctorRepository implements DoctorRepositoryIntf {
             em.close();
         }
     }
+
+    public List<String> findAllBySpeciality(String specialty) {
+        EntityManager em = JpaUtil.getEntityManager();
+        try {
+            List<Doctor> doctors = em.createQuery(
+                            "SELECT d FROM Doctor d WHERE d.speciality.name = :specialty", Doctor.class)
+                    .setParameter("specialty", specialty)
+                    .getResultList();
+
+            return doctors.stream()
+                    .map(User::getName)
+                    .toList();
+        } finally {
+            em.close();
+        }
+    }
+
+
 }

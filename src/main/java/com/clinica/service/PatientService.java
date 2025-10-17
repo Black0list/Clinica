@@ -25,9 +25,17 @@ public class PatientService {
         return instance;
     }
 
-    public static List<PatientDTO> patients(){
+    public List<PatientDTO> patients(){
         List<Patient> patientsUsers = patientRepo.findAll();
 
         return patientsUsers.stream().map(PatientMapper::toDTO).toList();
+    }
+
+    public Optional<Patient> findPatientByName(String patientName) {
+        return patientRepo.findPatientByName(patientName);
+    }
+
+    public Optional<PatientDTO> findByUserId(String email) {
+        return Optional.of(PatientMapper.toDTO(patientRepo.findByEmail(email).get()));
     }
 }
