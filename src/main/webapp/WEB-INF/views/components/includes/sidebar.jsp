@@ -24,17 +24,17 @@
             <span>Patients</span>
         </a>
 
-        <a href="/staffs"
-           class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 ${param.active == 'staff' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : ''}">
-            <i class="fas fa-user-nurse w-5"></i>
-            <span>Staff</span>
-        </a>
+<%--        <a href="/staffs"--%>
+<%--           class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 ${param.active == 'staff' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : ''}">--%>
+<%--            <i class="fas fa-user-nurse w-5"></i>--%>
+<%--            <span>Staff</span>--%>
+<%--        </a>--%>
 
-        <a href="/appointments"
-           class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 ${param.active == 'appointments' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : ''}">
-            <i class="fas fa-calendar-check w-5"></i>
-            <span>Appointments</span>
-        </a>
+<%--        <a href="/appointments"--%>
+<%--           class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 ${param.active == 'appointments' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : ''}">--%>
+<%--            <i class="fas fa-calendar-check w-5"></i>--%>
+<%--            <span>Appointments</span>--%>
+<%--        </a>--%>
 
         <a href="/medical-notes"
            class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 ${param.active == 'medical-notes' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : ''}">
@@ -42,11 +42,11 @@
             <span>Medical Notes</span>
         </a>
 
-        <a href="/availabilities"
-           class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 ${param.active == 'availability' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : ''}">
-            <i class="fas fa-clock w-5"></i>
-            <span>Availability</span>
-        </a>
+<%--        <a href="/availabilities"--%>
+<%--           class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 ${param.active == 'availability' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : ''}">--%>
+<%--            <i class="fas fa-clock w-5"></i>--%>
+<%--            <span>Availability</span>--%>
+<%--        </a>--%>
 
         <a href="/departments"
            class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 ${param.active == 'departments' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : ''}">

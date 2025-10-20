@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <jsp:include page="../components/includes/layout-head.jsp">
     <jsp:param name="title" value="Dashboard - Clinic Admin" />
 </jsp:include>
@@ -16,6 +19,7 @@
                 <p class="text-gray-600 dark:text-gray-400">Welcome to your clinic management system</p>
             </div>
 
+            <!-- ✅ Dynamic Stats -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 border border-gray-200 dark:border-gray-700">
                     <div class="flex items-center justify-between mb-4">
@@ -25,7 +29,7 @@
                         <span class="text-sm text-green-600 dark:text-green-400 font-medium">+12%</span>
                     </div>
                     <h3 class="text-gray-600 dark:text-gray-400 text-sm mb-1">Total Patients</h3>
-                    <p class="text-3xl font-bold">1,234</p>
+                    <p class="text-3xl font-bold">${totalPatients}</p>
                 </div>
 
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 border border-gray-200 dark:border-gray-700">
@@ -36,7 +40,7 @@
                         <span class="text-sm text-green-600 dark:text-green-400 font-medium">+3</span>
                     </div>
                     <h3 class="text-gray-600 dark:text-gray-400 text-sm mb-1">Total Doctors</h3>
-                    <p class="text-3xl font-bold">45</p>
+                    <p class="text-3xl font-bold">${totalDoctors}</p>
                 </div>
 
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 border border-gray-200 dark:border-gray-700">
@@ -46,90 +50,47 @@
                         </div>
                         <span class="text-sm text-red-600 dark:text-red-400 font-medium">-5%</span>
                     </div>
-                    <h3 class="text-gray-600 dark:text-gray-400 text-sm mb-1">Appointments Today</h3>
-                    <p class="text-3xl font-bold">28</p>
+                    <h3 class="text-gray-600 dark:text-gray-400 text-sm mb-1">Total Appointments</h3>
+                    <p class="text-3xl font-bold">${totalAppointments}</p>
                 </div>
 
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 border border-gray-200 dark:border-gray-700">
                     <div class="flex items-center justify-between mb-4">
                         <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-dollar-sign text-orange-600 dark:text-orange-400 text-xl"></i>
+                            <i class="fas fa-notes-medical text-orange-600 dark:text-orange-400 text-xl"></i>
                         </div>
                         <span class="text-sm text-green-600 dark:text-green-400 font-medium">+18%</span>
                     </div>
-                    <h3 class="text-gray-600 dark:text-gray-400 text-sm mb-1">Monthly Revenue</h3>
-                    <p class="text-3xl font-bold">$45.2K</p>
+                    <h3 class="text-gray-600 dark:text-gray-400 text-sm mb-1">Total Medical Notes</h3>
+                    <p class="text-3xl font-bold">${totalMedicalNotes}</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- ✅ Dynamic Recent Appointments -->
+            <div class="grid grid-cols-1 lg:grid-cols-1 gap-6">
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700">
                     <div class="p-6 border-b border-gray-200 dark:border-gray-700">
                         <h2 class="text-xl font-bold">Recent Appointments</h2>
                     </div>
                     <div class="p-6">
                         <div class="space-y-4">
-                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-                                <div class="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-user text-primary-600 dark:text-primary-400"></i>
+                            <c:forEach var="a" items="${recentAppointments}">
+                                <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
+                                    <div class="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-user text-primary-600 dark:text-primary-400"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-medium">${a.patientName}</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">${a.doctorName} - ${a.startTime}</p>
+                                    </div>
+                                    <span class="px-3 py-1 rounded-full text-sm
+                                        ${a.status == 'DONE' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
+                                        a.status == 'PLANNED' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400' :
+                                        'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'}">
+                                            ${a.status}
+                                    </span>
                                 </div>
-                                <div class="flex-1">
-                                    <p class="font-medium">John Doe</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">Dr. Smith - 10:00 AM</p>
-                                </div>
-                                <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm">Confirmed</span>
-                            </div>
-
-                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-                                <div class="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-user text-primary-600 dark:text-primary-400"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="font-medium">Jane Smith</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">Dr. Johnson - 11:30 AM</p>
-                                </div>
-                                <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 rounded-full text-sm">Pending</span>
-                            </div>
-
-                            <div class="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700">
-                                <div class="w-10 h-10 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-user text-primary-600 dark:text-primary-400"></i>
-                                </div>
-                                <div class="flex-1">
-                                    <p class="font-medium">Mike Wilson</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">Dr. Brown - 2:00 PM</p>
-                                </div>
-                                <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-sm">Confirmed</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700">
-                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                        <h2 class="text-xl font-bold">Quick Actions</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="grid grid-cols-2 gap-4">
-                            <button class="flex flex-col items-center gap-3 p-4 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/10">
-                                <i class="fas fa-user-plus text-2xl text-primary-600 dark:text-primary-400"></i>
-                                <span class="font-medium">Add Patient</span>
-                            </button>
-
-                            <button class="flex flex-col items-center gap-3 p-4 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/10">
-                                <i class="fas fa-calendar-plus text-2xl text-primary-600 dark:text-primary-400"></i>
-                                <span class="font-medium">New Appointment</span>
-                            </button>
-
-                            <button class="flex flex-col items-center gap-3 p-4 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/10">
-                                <i class="fas fa-file-medical text-2xl text-primary-600 dark:text-primary-400"></i>
-                                <span class="font-medium">Add Note</span>
-                            </button>
-
-                            <button class="flex flex-col items-center gap-3 p-4 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/10">
-                                <i class="fas fa-chart-line text-2xl text-primary-600 dark:text-primary-400"></i>
-                                <span class="font-medium">View Reports</span>
-                            </button>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>

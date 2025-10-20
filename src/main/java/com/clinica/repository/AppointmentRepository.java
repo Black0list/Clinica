@@ -3,6 +3,9 @@ package com.clinica.repository;
 import com.clinica.dao.AppointmentDAO;
 import com.clinica.dao.AvailabilityDAO;
 import com.clinica.dto.AppointmentDTO;
+import com.clinica.dto.SpecialityDTO;
+import com.clinica.mapper.AppointmentMapper;
+import com.clinica.mapper.SpecialityMapper;
 import com.clinica.model.Appointment;
 import com.clinica.model.Availability;
 import com.clinica.model.Doctor;
@@ -34,7 +37,7 @@ public class AppointmentRepository implements AppointmentRepositoryIntf {
         EntityManager em = JpaUtil.getEntityManager();
         try {
             TypedQuery<Appointment> query = em.createQuery(
-                    "SELECT a FROM Appointment a WHERE a.date = :date AND a.doctor.name = :doctorName",
+                    "SELECT a FROM Appointment a WHERE a.date = :date AND a.doctor.name = :doctorName AND a.status != 'CANCELLED'",
                     Appointment.class
             );
             query.setParameter("date", date);
@@ -115,6 +118,10 @@ public class AppointmentRepository implements AppointmentRepositoryIntf {
         } finally {
             em.close();
         }
+    }
+
+    public Optional<Appointment> findById(Long id) {
+        return Optional.of(appointmentDAO.findById(id).get());
     }
 
 }

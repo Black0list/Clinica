@@ -20,7 +20,7 @@
                         <h1 class="text-3xl font-bold mb-2">Patients Management</h1>
                         <p class="text-gray-600 dark:text-gray-400">Manage and view all patient records</p>
                     </div>
-                    <button onclick="openModal('patientModal')" class="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors">
+                    <button onclick="openPatientModal('patientModal')" class="inline-flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors">
                         <i class="fas fa-plus"></i>
                         Add Patient
                     </button>

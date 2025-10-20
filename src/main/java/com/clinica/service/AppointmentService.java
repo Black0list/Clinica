@@ -35,10 +35,10 @@ public class AppointmentService {
     }
 
     public List<String> getOccupiedTimes(String day, LocalDate date, String doctorName) {
-        boolean docAvailable =  avaService.checkDocIfAvailable(doctorName, day);
+        boolean docUnAvailable =  avaService.checkDocIfAvailable(doctorName, day);
 
         List<String> times = new ArrayList<>();
-        if (docAvailable) {
+        if (docUnAvailable) {
             LocalTime start = LocalTime.of(9, 0);
             LocalTime end = LocalTime.of(15, 25);
 

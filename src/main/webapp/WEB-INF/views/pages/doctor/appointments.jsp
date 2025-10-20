@@ -160,10 +160,10 @@
     function saveMedicalNote() {
         const note = document.getElementById('noteText').value.trim();
         if (!note) return;
-        fetch(`${pageContext.request.contextPath}/doctor/appointments/notes`, {
+        fetch(`${pageContext.request.contextPath}/notes/create`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ appointmentId: currentAppointmentId, note })
+            body: JSON.stringify({ appointmentId: currentAppointmentId, content: note })
         }).then(res => res.json())
             .then(data => {
                 if (data.success) {
