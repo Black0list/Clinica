@@ -13,17 +13,17 @@
             <span>My Appointments</span>
         </a>
 
-        <a href="/patient/history"
-           class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 ${param.active == 'history' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : ''}">
-            <i class="fas fa-notes-medical w-5"></i>
-            <span>Appointment History</span>
-        </a>
+<%--        <a href="/patient/history"--%>
+<%--           class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 ${param.active == 'history' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : ''}">--%>
+<%--            <i class="fas fa-notes-medical w-5"></i>--%>
+<%--            <span>Appointment History</span>--%>
+<%--        </a>--%>
 
-        <a href="/patient/doctors"
-           class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 ${param.active == 'search' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : ''}">
-            <i class="fas fa-search w-5"></i>
-            <span>Doctor</span>
-        </a>
+<%--        <a href="/patient/doctors"--%>
+<%--           class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 ${param.active == 'search' ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : ''}">--%>
+<%--            <i class="fas fa-search w-5"></i>--%>
+<%--            <span>Doctor</span>--%>
+<%--        </a>--%>
 
     </nav>
 </aside>

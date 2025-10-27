@@ -62,7 +62,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-1 gap-6">
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700">
                     <div class="p-6 border-b border-gray-200 dark:border-gray-700">
                         <h2 class="text-xl font-bold">Recent Appointments</h2>
@@ -105,34 +105,6 @@
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700">
-                    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-                        <h2 class="text-xl font-bold">Quick Actions</h2>
-                    </div>
-                    <div class="p-6">
-                        <div class="grid grid-cols-2 gap-4">
-                            <button class="flex flex-col items-center gap-3 p-4 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/10">
-                                <i class="fas fa-user-plus text-2xl text-primary-600 dark:text-primary-400"></i>
-                                <span class="font-medium">Add Patient</span>
-                            </button>
-
-                            <button class="flex flex-col items-center gap-3 p-4 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/10">
-                                <i class="fas fa-calendar-plus text-2xl text-primary-600 dark:text-primary-400"></i>
-                                <span class="font-medium">New Appointment</span>
-                            </button>
-
-                            <button class="flex flex-col items-center gap-3 p-4 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/10">
-                                <i class="fas fa-file-medical text-2xl text-primary-600 dark:text-primary-400"></i>
-                                <span class="font-medium">Add Note</span>
-                            </button>
-
-                            <button class="flex flex-col items-center gap-3 p-4 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/10">
-                                <i class="fas fa-chart-line text-2xl text-primary-600 dark:text-primary-400"></i>
-                                <span class="font-medium">View Reports</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </main>
     </div>
